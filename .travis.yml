@@ -3,6 +3,7 @@ language: ruby
 env:
   global:
     - KNAPSACK_PRO_CI_NODE_TOTAL=2
+    - KNAPSACK_PRO_LOG_LEVEL=info
   jobs:
     - KNAPSACK_PRO_CI_NODE_INDEX=0
     - KNAPSACK_PRO_CI_NODE_INDEX=1
@@ -13,9 +14,8 @@ script:
 
   # - "bundle exec rake knapsack_pro:rspec"
   - "bundle exec rake knapsack_pro:queue:rspec"
-
-  - bundle exec rspec --format RspecJunitFormatter --out report.xml
-  - cat report.xml
+  # - bundle exec rspec --format RspecJunitFormatter --out report.xml
+  # - cat report.xml
   # - curl -o tr-reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
   # - chmod +x tr-reporter
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
