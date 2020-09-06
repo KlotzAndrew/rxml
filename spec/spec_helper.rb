@@ -1,3 +1,6 @@
+require 'knapsack_pro'
+KnapsackPro::Adapters::RSpecAdapter.bind
+
 RSpec.configure do |config|
   config.around(:each) do |example|
     $stdout = StringIO.new
