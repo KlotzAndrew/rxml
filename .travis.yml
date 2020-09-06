@@ -4,6 +4,8 @@ script:
   - set -o pipefail
   - bundle install
 
-  - curl -o tr-reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
-  - chmod +x tr-reporter
-  - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
+  - bundle exec rspec --format RspecJunitFormatter --out report.xml
+  - cat report.xml
+  # - curl -o tr-reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
+  # - chmod +x tr-reporter
+  # - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
