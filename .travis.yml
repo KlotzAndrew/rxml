@@ -12,8 +12,9 @@ script:
   - set -o pipefail
   - bundle install
 
-  # - "bundle exec rake knapsack_pro:rspec"
-  - bundle exec rake knapsack_pro:queue:rspec
+  - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
+  - ls tmp
+  # - bundle exec rake knapsack_pro:queue:rspec
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml
   # - cat report.xml
   # - curl -o tr-reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
