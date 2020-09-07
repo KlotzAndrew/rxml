@@ -13,7 +13,7 @@ script:
   - bundle install
 
   - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
-  - ls tmp
+  - ls
   # - bundle exec rake knapsack_pro:queue:rspec
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml
   # - cat report.xml
