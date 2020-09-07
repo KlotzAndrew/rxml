@@ -14,6 +14,7 @@ script:
 
   - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
   - ls
+  - echo $TRAVIS_BUILD_ID
   # - bundle exec rake knapsack_pro:queue:rspec
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml
   # - cat report.xml
