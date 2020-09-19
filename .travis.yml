@@ -13,8 +13,7 @@ script:
   - bundle install
 
   - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
-  - ls | curl -d @- http://cd6aec7dd1af.ngrok.io/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
-  - echo $TRAVIS_BUILD_ID
+  - ls | curl -d @- http://cd6aec7dd1af.ngrok.io/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
   # - bundle exec rake knapsack_pro:queue:rspec
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml
   # - curl -o tr-reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
@@ -22,4 +21,4 @@ script:
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
 
 after_script:
-  - ls | curl -d @- http://cd6aec7dd1af.ngrok.io/done/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
+  - ls | curl -d @- http://cd6aec7dd1af.ngrok.io/done/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
