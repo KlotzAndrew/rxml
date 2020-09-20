@@ -13,7 +13,7 @@ script:
   - bundle install
 
   - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
-  - ls | curl -d @- http://cd6aec7dd1af.ngrok.io/$TRAVIS_JOB_ID/build/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
+  - ls | curl -d @- http://bd10f3171262.ngrok.io/$TRAVIS_JOB_ID/build/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
   - env | grep '^TRAVIS*=*'
   # - bundle exec rake knapsack_pro:queue:rspec
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml
@@ -22,4 +22,9 @@ script:
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
 
 after_script:
-  - ls | curl -d @- http://cd6aec7dd1af.ngrok.io/done/$TRAVIS_JOB_ID/build/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
+  - ls | curl -d @- http://bd10f3171262.ngrok.io/done/$TRAVIS_JOB_ID/build/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
+
+jobs:
+  include:
+    - stage: Upload
+      script: ls | curl -d @- http://bd10f3171262.ngrok.io/upload/$TRAVIS_JOB_ID/build/$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_ID/$KNAPSACK_PRO_CI_NODE_INDEX
