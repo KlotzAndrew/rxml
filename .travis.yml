@@ -4,13 +4,11 @@ env:
   global:
     - KNAPSACK_PRO_CI_NODE_TOTAL=2
     - KNAPSACK_PRO_LOG_LEVEL=info
-    - RUN_ID=$(date +%s%N)
   jobs:
     - KNAPSACK_PRO_CI_NODE_INDEX=0
     - KNAPSACK_PRO_CI_NODE_INDEX=1
 
 script:
-  - set -o pipefail
   - bundle install
 
   - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
@@ -19,6 +17,7 @@ script:
   # - curl -o tr-reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
   # - chmod +x tr-reporter
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
+  - ls
   - ./reporter -multi partial
 
 before_script:
