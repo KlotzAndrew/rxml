@@ -14,16 +14,16 @@ script:
   - bundle install
 
   - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
-  - ls | curl -d @- https://416ecc4c3fb0.ngrok.io/script
-  - env | grep '^TRAVIS*=*'
   # - bundle exec rake knapsack_pro:queue:rspec
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml
   # - curl -o tr-reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
   # - chmod +x tr-reporter
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
+  - ./reporter -multi partial
 
 after_script:
-  - ls | curl -d @- https://416ecc4c3fb0.ngrok.io/done
+  - curl -o reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
+  - chmod +x reporter
 
 stages:
   - setup
@@ -33,7 +33,6 @@ stages:
 jobs:
   include:
     - stage: setup
-      script: env | grep '^TRAVIS*=*' && ls | curl -d @- https://416ecc4c3fb0.ngrok.io/setup
+      script: ./reporter -multi before
     - stage: upload
-      script: env | grep '^TRAVIS*=*' && ls | curl -d @- https://416ecc4c3fb0.ngrok.io/upload
-      after_script: ls | curl -d @- https://416ecc4c3fb0.ngrok.io/upload_after
+      script: ./reporter -multi after
