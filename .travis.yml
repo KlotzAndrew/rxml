@@ -21,7 +21,7 @@ script:
   # - bundle exec rspec --format RspecJunitFormatter --out report.xml | ./tr-reporter -file report.xml
   - ./reporter -multi partial
 
-after_script:
+before_script:
   - curl -o reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
   - chmod +x reporter
 
