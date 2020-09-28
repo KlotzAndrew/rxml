@@ -6,6 +6,6 @@ describe "groups specs" do
   end
 
   it "should still succeed" do
-    expect(true).to be(true)
+    expect(true).to be(false)
   end
 end
