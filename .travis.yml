@@ -19,7 +19,8 @@ before_script:
   - chmod +x reporter
 
 after_failure:
-  - ./reporter -multi after
+  - ls
+  - ./reporter -multi after -debug
 
 stages:
   - setup
