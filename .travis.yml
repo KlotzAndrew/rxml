@@ -18,9 +18,9 @@ before_script:
   - curl -o reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
   - chmod +x reporter
 
-after_failure:
-  - ls
-  - ./reporter -multi after -debug
+# after_failure:
+#   - ls
+#   - ./reporter -multi after -debug
 
 stages:
   - setup
