@@ -11,16 +11,14 @@ env:
 script:
   - bundle install
 
-  - trap './reporter -multi partial' EXIT
   - bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
 
 before_script:
   - curl -o reporter https://downloads.testrecall.com/r/latest/reporter.linux-amd64
   - chmod +x reporter
 
-# after_failure:
-#   - ls
-#   - ./reporter -multi after -debug
+after_script:
+  - ./reporter -multi after
 
 stages:
   - setup
