@@ -20,8 +20,8 @@ before_script:
 after_success:
   - ./reporter -multi partial -debug
 
-after_failure:
-  - ./reporter -multi after -debug || true
+# after_failure:
+#   - ./reporter -multi after -debug || true
 
 stages:
   - setup
